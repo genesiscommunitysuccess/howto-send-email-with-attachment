@@ -1,0 +1,23 @@
+<!--
+    Processes defined here will run the application.
+
+  * Full documentation on process definitions may be found here >> https://docs.genesis.global/docs/develop/server-capabilities/runtime-configuration/processes/
+
+-->
+
+<processes>
+  <process name="HOWTO_SEND_EMAIL_WITH_ATTACHMENT_MANAGER">
+    <groupId>HOWTO_SEND_EMAIL_WITH_ATTACHMENT</groupId>
+    <start>true</start>
+    <options>-Xmx1024m -DRedirectStreamsToLog=true</options>
+    <module>genesis-pal-eventhandler,genesis-pal-dataserver</module>
+    <!--
+    On top of the default process definition, we need to add "global.genesis.file.storage", "global.genesis.notify.api.service" and "global.genesis.file.api" to the package tag
+    -->
+    <package>global.genesis.dataserver.pal,global.genesis.eventhandler.pal,global.genesis.file.storage,global.genesis.file.api,global.genesis.notify.api.service</package>
+    <script>howto-send-email-with-attachment-eventhandler.kts,howto-send-email-with-attachment-dataserver.kts</script>
+    <description>Management of eventhandler and data server processes</description>
+    <classpath>howto-send-email-with-attachment-app*</classpath>
+    <language>pal</language>
+  </process>
+</processes>
