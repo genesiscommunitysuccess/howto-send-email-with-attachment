@@ -1,0 +1,451 @@
+{
+  "meta": {
+    "version": "1.127.1",
+    "generated": "Fri, 27 Sep 2024 13:04:03 GMT"
+  },
+  "data": {
+    "projectName": "howto-send-email-with-attachment",
+    "description": "",
+    "components": [
+      "GenesisServerCore",
+      "User Authorization",
+      "Document Management",
+      "Notifications",
+      "DataServerCore"
+    ],
+    "tables": [
+      {
+        "name": "EMAIL",
+        "id": 11000,
+        "primaryKey": {
+          "id": null,
+          "name": null,
+          "fields": [
+            "SUBJECT"
+          ],
+          "indexType": "UNIQUE"
+        },
+        "fields": [
+          {
+            "name": "FILE_NAME",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "SUBJECT",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "BODY",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "RECIPIENT",
+            "type": "STRING",
+            "nullable": false
+          },
+          {
+            "name": "RECIPIENT_TYPE",
+            "type": "ENUM",
+            "defaultValue": "TO",
+            "values": [
+              "TO",
+              "CC",
+              "BCC"
+            ],
+            "nullable": false
+          }
+        ],
+        "generatedFields": [],
+        "audit": true,
+        "generateCreateUpdateDelete": true,
+        "snapshot": true,
+        "realtimeQuery": {
+          "queryName": "ALL_EMAILS",
+          "fields": [
+            "FILE_NAME",
+            "SUBJECT",
+            "BODY",
+            "RECIPIENT",
+            "RECIPIENT_TYPE"
+          ]
+        },
+        "indices": [],
+        "meta": {
+          "attrOrder": [
+            "FILE_NAME",
+            "SUBJECT",
+            "BODY",
+            "RECIPIENT",
+            "RECIPIENT_TYPE"
+          ]
+        }
+      }
+    ],
+    "consolidators": [],
+    "pipelines": [],
+    "ui": {
+      "config": null,
+      "routes": [
+        {
+          "id": "d64bb794-c376-4b10-9ccd-863347876041",
+          "name": "HOME",
+          "layoutType": null,
+          "permissions": null,
+          "tiles": [
+            {
+              "title": "Email",
+              "type": "entity-manager",
+              "config": {
+                "resourceName": "ALL_EMAILS",
+                "permissions": null,
+                "updateEvent": "EVENT_EMAIL_MODIFY",
+                "deleteEvent": "EVENT_EMAIL_DELETE",
+                "createEvent": "EVENT_EMAIL_INSERT",
+                "modalPosition": "centre",
+                "sizeColumnsToFit": true,
+                "enableSearchBar": true,
+                "reqrep": false,
+                "columns": [
+                  {
+                    "field": "FILE_NAME",
+                    "meta": {
+                      "gridDisplay": {
+                        "mode": "visible",
+                        "type": "string",
+                        "format": "Input"
+                      },
+                      "attribute": "FILE_NAME",
+                      "displayName": "File Name",
+                      "alias": null,
+                      "entity": "EMAIL",
+                      "id": "FILE_NAMEID"
+                    }
+                  },
+                  {
+                    "field": "SUBJECT",
+                    "meta": {
+                      "gridDisplay": {
+                        "mode": "visible",
+                        "type": "string",
+                        "format": "Input"
+                      },
+                      "attribute": "SUBJECT",
+                      "displayName": "Subject",
+                      "alias": null,
+                      "entity": "EMAIL",
+                      "id": "SUBJECTID"
+                    }
+                  },
+                  {
+                    "field": "BODY",
+                    "meta": {
+                      "gridDisplay": {
+                        "mode": "visible",
+                        "type": "string",
+                        "format": "Input"
+                      },
+                      "attribute": "BODY",
+                      "displayName": "Body",
+                      "alias": null,
+                      "entity": "EMAIL",
+                      "id": "BODYID"
+                    }
+                  },
+                  {
+                    "field": "RECIPIENT",
+                    "headerName": "Recipient",
+                    "meta": {
+                      "gridDisplay": {
+                        "mode": "visible",
+                        "type": "string",
+                        "format": "Input"
+                      },
+                      "attribute": "RECIPIENT",
+                      "displayName": "Recipient",
+                      "alias": null,
+                      "entity": "EMAIL",
+                      "id": "RECIPIENTID"
+                    }
+                  },
+                  {
+                    "field": "RECIPIENT_TYPE",
+                    "headerName": "Recipient Type",
+                    "meta": {
+                      "gridDisplay": {
+                        "mode": "visible",
+                        "type": "enum"
+                      },
+                      "attribute": "RECIPIENT_TYPE",
+                      "displayName": "Recipient Type",
+                      "alias": null,
+                      "entity": "EMAIL",
+                      "id": "RECIPIENT_TYPEID"
+                    }
+                  }
+                ],
+                "createFormUiSchema": {
+                  "type": "VerticalLayout",
+                  "elements": [
+                    {
+                      "type": "Control",
+                      "label": "File Name",
+                      "scope": "#/properties/FILE_NAME",
+                      "options": {},
+                      "meta": {
+                        "createForm": {
+                          "mode": "visible",
+                          "type": "string",
+                          "format": "Input"
+                        },
+                        "alias": null,
+                        "attribute": "FILE_NAME",
+                        "entity": "EMAIL",
+                        "id": "FILE_NAMEID"
+                      }
+                    },
+                    {
+                      "type": "Control",
+                      "label": "Subject",
+                      "scope": "#/properties/SUBJECT",
+                      "options": {},
+                      "meta": {
+                        "createForm": {
+                          "mode": "visible",
+                          "type": "string",
+                          "format": "Input"
+                        },
+                        "alias": null,
+                        "attribute": "SUBJECT",
+                        "entity": "EMAIL",
+                        "id": "SUBJECTID"
+                      }
+                    },
+                    {
+                      "type": "Control",
+                      "label": "Body",
+                      "scope": "#/properties/BODY",
+                      "options": {},
+                      "meta": {
+                        "createForm": {
+                          "mode": "visible",
+                          "type": "string",
+                          "format": "Input"
+                        },
+                        "alias": null,
+                        "attribute": "BODY",
+                        "entity": "EMAIL",
+                        "id": "BODYID"
+                      }
+                    },
+                    {
+                      "type": "Control",
+                      "label": "Recipient",
+                      "scope": "#/properties/RECIPIENT",
+                      "options": {},
+                      "meta": {
+                        "createForm": {
+                          "mode": "visible",
+                          "type": "string",
+                          "format": "Input"
+                        },
+                        "alias": null,
+                        "attribute": "RECIPIENT",
+                        "entity": "EMAIL",
+                        "id": "RECIPIENTID"
+                      }
+                    },
+                    {
+                      "type": "Control",
+                      "label": "Recipient Type",
+                      "scope": "#/properties/RECIPIENT_TYPE",
+                      "options": {},
+                      "meta": {
+                        "createForm": {
+                          "mode": "visible",
+                          "type": "enum"
+                        },
+                        "alias": null,
+                        "attribute": "RECIPIENT_TYPE",
+                        "entity": "EMAIL",
+                        "id": "RECIPIENT_TYPEID"
+                      }
+                    }
+                  ]
+                },
+                "updateFormUiSchema": {
+                  "type": "VerticalLayout",
+                  "elements": [
+                    {
+                      "type": "Control",
+                      "label": "File Name",
+                      "scope": "#/properties/FILE_NAME",
+                      "options": {},
+                      "meta": {
+                        "updateForm": {
+                          "mode": "visible",
+                          "type": "string",
+                          "format": "Input"
+                        },
+                        "alias": null,
+                        "attribute": "FILE_NAME",
+                        "entity": "EMAIL",
+                        "id": "FILE_NAMEID"
+                      }
+                    },
+                    {
+                      "type": "Control",
+                      "label": "Subject",
+                      "scope": "#/properties/SUBJECT",
+                      "options": {},
+                      "meta": {
+                        "updateForm": {
+                          "mode": "visible",
+                          "type": "string",
+                          "format": "Input"
+                        },
+                        "alias": null,
+                        "attribute": "SUBJECT",
+                        "entity": "EMAIL",
+                        "id": "SUBJECTID"
+                      }
+                    },
+                    {
+                      "type": "Control",
+                      "label": "Body",
+                      "scope": "#/properties/BODY",
+                      "options": {},
+                      "meta": {
+                        "updateForm": {
+                          "mode": "visible",
+                          "type": "string",
+                          "format": "Input"
+                        },
+                        "alias": null,
+                        "attribute": "BODY",
+                        "entity": "EMAIL",
+                        "id": "BODYID"
+                      }
+                    },
+                    {
+                      "type": "Control",
+                      "label": "Recipient",
+                      "scope": "#/properties/RECIPIENT",
+                      "options": {},
+                      "meta": {
+                        "updateForm": {
+                          "mode": "visible",
+                          "type": "string",
+                          "format": "Input"
+                        },
+                        "alias": null,
+                        "attribute": "RECIPIENT",
+                        "entity": "EMAIL",
+                        "id": "RECIPIENTID"
+                      }
+                    },
+                    {
+                      "type": "Control",
+                      "label": "Recipient Type",
+                      "scope": "#/properties/RECIPIENT_TYPE",
+                      "options": {},
+                      "meta": {
+                        "updateForm": {
+                          "mode": "visible",
+                          "type": "enum"
+                        },
+                        "alias": null,
+                        "attribute": "RECIPIENT_TYPE",
+                        "entity": "EMAIL",
+                        "id": "RECIPIENT_TYPEID"
+                      }
+                    }
+                  ]
+                },
+                "entityName": "Email",
+                "meta": {
+                  "inactiveGridConfig": [],
+                  "inactiveFormConfig": [],
+                  "configAttrNames": [
+                    {
+                      "name": "FILE_NAME",
+                      "alias": null
+                    },
+                    {
+                      "name": "SUBJECT",
+                      "alias": null
+                    },
+                    {
+                      "name": "BODY",
+                      "alias": null
+                    },
+                    {
+                      "name": "RECIPIENT",
+                      "alias": null
+                    },
+                    {
+                      "name": "RECIPIENT_TYPE",
+                      "alias": null
+                    }
+                  ]
+                }
+              },
+              "meta": {}
+            }
+          ]
+        }
+      ],
+      "framework": "web components"
+    },
+    "views": [],
+    "PBCs": [],
+    "csv": [
+      {
+        "name": "EMAIL",
+        "fields": [
+          "FILE_NAME",
+          "SUBJECT",
+          "BODY",
+          "RECIPIENT",
+          "RECIPIENT_TYPE"
+        ]
+      },
+      {
+        "name": "RIGHT",
+        "fields": [
+          "CODE",
+          "DESCRIPTION"
+        ],
+        "data": []
+      },
+      {
+        "name": "PROFILE",
+        "fields": [
+          "NAME",
+          "DESCRIPTION",
+          "STATUS"
+        ],
+        "data": []
+      },
+      {
+        "name": "PROFILE_RIGHT",
+        "fields": [
+          "PROFILE_NAME",
+          "RIGHT_CODE"
+        ],
+        "data": []
+      }
+    ],
+    "userOverrides": null,
+    "deliveryConfig": {
+      "method": "download",
+      "fileSuffix": "2024-09-27_140355"
+    },
+    "telemetry": {
+      "deviceId": "6dc27acd-edec-4b58-af40-400477f35371",
+      "sessionId": "f72669d1-ed6b-4b23-b2d5-6b57f5b92388"
+    }
+  }
+}
